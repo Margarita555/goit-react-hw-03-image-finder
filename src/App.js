@@ -15,7 +15,7 @@ export default class App extends Component{
   };
 
   componentDidUpdate(prevProps, prevState) {
-    if (prevState.searchQuery !== this.state.searchQuery) {
+    if (prevState.searchQuery !== this.state.searchQuery || prevState.page !==this.state.page) {
       this.setState({ loading: true })
       fetch(`https://pixabay.com/api/?q=${this.state.searchQuery}&page=${this.state.page}&key=23351611-7864196d6829752dad19e3759&image_type=photo&orientation=horizontal&per_page=12`)
         .then(response => {
