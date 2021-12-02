@@ -1,12 +1,12 @@
 import React from 'react';
 import { Component } from 'react/cjs/react.production.min';
-import { ToastContainer, toast } from 'react-toastify';
+// import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import Searchbar from './Searchbar/Searchbar';
-import ImageGallery from './ImageGallery/ImageGallery';
-import Button from './Button/Button';
+import Searchbar from '../Searchbar/Searchbar';
+import ImageGallery from '../ImageGallery/ImageGallery';
+import Button from '../Button/Button';
 // import Modal from './Modal/Modal';
-import Loading from './Loader/Loader';
+import Loading from '../Loader/Loader';
 import s from './App.module.css';
 
 
@@ -71,8 +71,7 @@ export default class App extends Component{
 
 
   render() {
-    // console.log(this.state.images)
-    // console.log(this.state.largeImageURL)
+
   return (
     <div className={s.App} ref={this.myRef}>
       {/* {this.state.showModal && <Modal largeImageURL={this.state.largeImageURL}

@@ -1,7 +1,7 @@
 import { Component } from 'react';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import searchIcon from '../images/search.svg'
+import searchIcon from '../../images/search.svg'
 import s from './Searchbar.module.css';
 
 export default class Searchbar extends Component {
