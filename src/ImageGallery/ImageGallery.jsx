@@ -7,9 +7,12 @@ export default class ImageGallery extends Component {
     render(){
         return (
             <ul className={s.gallery}>
-                {this.props.images.map(({ id, webformatURL}) => (
-                    <ImageGalleryItem id={id}
+                {this.props.images.map(({ id, webformatURL, largeImageURL}) => (
+                    <ImageGalleryItem key={id} id={id}
                         webformatURL={webformatURL}
+                        largeImageURL={largeImageURL}
+                        // toggleModal={this.props.toggleModal}
+                        // handleGalleryItemClick={this.props.handleGalleryItemClick }
                     />
                 ))}
               
