@@ -17,7 +17,7 @@
   max-height: calc(100vh - 6%);
 }
 
-.CloseButton {
+.closeButton {
   position: absolute;
   top: 20px;
   right: 45px;
