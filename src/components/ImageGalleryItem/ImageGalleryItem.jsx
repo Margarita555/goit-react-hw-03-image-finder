@@ -8,11 +8,9 @@ export default class ImageGalleryItem extends Component {
   };
 
   toggleModal = () => {
-    console.log(this.state.showModal);
     this.setState(({ showModal }) => ({
       showModal: !showModal,
     }));
-    console.log(this.state.showModal);
   };
 
   render() {
