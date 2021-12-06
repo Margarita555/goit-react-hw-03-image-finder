@@ -1,4 +1,5 @@
-import { Component, createPortal } from 'react';
+import { Component } from 'react';
+import { createPortal } from 'react-dom/cjs/react-dom.development';
 import { ReactComponent as CloseButton } from '../../images/closeBtn.svg';
 import s from './Modal.module.css';
 const modalRoot = document.querySelector('#modal-root');
@@ -17,7 +18,6 @@ export default class Modal extends Component {
       this.props.toggleModal();
     }
   };
-
   handleBackdropClick = e => {
     this.props.toggleModal();
     if (
@@ -25,7 +25,6 @@ export default class Modal extends Component {
       e.target.nodeName === 'svg' ||
       e.target.nodeName === 'path'
     ) {
-      console.log('r');
       this.props.toggleModal();
     }
   };
