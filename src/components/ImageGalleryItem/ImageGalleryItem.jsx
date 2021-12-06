@@ -1,6 +1,6 @@
-import { Component } from "react";
-import Modal from "../Modal/Modal";
-import s from "./ImageGalleryItem.module.css";
+import { Component } from 'react';
+import Modal from '../Modal/Modal';
+import s from './ImageGalleryItem.module.css';
 
 export default class ImageGalleryItem extends Component {
   state = {
@@ -8,9 +8,11 @@ export default class ImageGalleryItem extends Component {
   };
 
   toggleModal = () => {
+    console.log(this.state.showModal);
     this.setState(({ showModal }) => ({
       showModal: !showModal,
     }));
+    console.log(this.state.showModal);
   };
 
   render() {

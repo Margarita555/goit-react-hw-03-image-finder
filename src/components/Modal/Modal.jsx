@@ -1,51 +1,65 @@
-import { Component } from "react";
-import { createPortal } from "react-dom/cjs/react-dom.development";
-import { ReactComponent as CloseButton } from "../../images/closeBtn.svg";
-// import Loading from '../Loader/Loader';
-import s from "./Modal.module.css";
-const modalRoot = document.querySelector("#modal-root");
+import { Component } from 'react';
+import { createPortal } from 'react-dom/cjs/react-dom.development';
+import { ReactComponent as CloseButton } from '../../images/closeBtn.svg';
+import Spinner from '../Spinner/Spinner';
+import s from './Modal.module.css';
+const modalRoot = document.querySelector('#modal-root');
 
 export default class Modal extends Component {
+  state = {
+    image: '',
+  };
   componentDidMount() {
-    window.addEventListener("keydown", this.handleKeyDown);
+    window.addEventListener('keydown', this.handleKeyDown);
+    // this.setState({ image: '' });
   }
 
   componentWillUnmount() {
-    window.removeEventListener("keydown", this.handleKeyDown);
+    window.removeEventListener('keydown', this.handleKeyDown);
   }
 
-  handleKeyDown = (e) => {
-    if (e.code === "Escape") {
+  handleKeyDown = e => {
+    if (e.code === 'Escape') {
       this.props.toggleModal();
     }
   };
-  handleBackdropClick = (e) => {
-    //  console.log(this.props)
-    // console.log(e.target.nodeName)
+
+  handleBackdropClick = e => {
     this.props.toggleModal();
-    //     if (e.currentTarget !== e.target ){
-    //     this.props.toggleModal()
-    // }
     if (
       e.currentTarget === e.target ||
-      e.target.nodeName === "svg" ||
-      e.target.nodeName === "path"
+      e.target.nodeName === 'svg' ||
+      e.target.nodeName === 'path'
     ) {
+      console.log('r');
       this.props.toggleModal();
     }
   };
+
+  handleImageLoaded() {
+    this.setState({ image: 'loaded' });
+  }
+
+  // handleImageErrored() {
+  //   this.setState({ image: 'failed to load' });
+  // }
 
   render() {
     return createPortal(
       <div className={s.overlay} onClick={this.handleBackdropClick}>
         <CloseButton className={s.closeButton} fill="#fff" />
         <div className={s.modal}>
-          {/* <Loading /> */}
-
-          <img src={this.props.largeImageURL} alt="img" />
+          {!this.state.image && <Spinner />}
+          <img
+            src={this.props.largeImageURL}
+            alt="img"
+            onLoad={this.handleImageLoaded.bind(this)}
+            // onError={this.handleImageErrored.bind(this)}
+          />
+          {/* {this.state.image} */}
         </div>
       </div>,
-      modalRoot
+      modalRoot,
     );
   }
 }
