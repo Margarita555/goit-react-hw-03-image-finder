@@ -1,5 +1,5 @@
 import { Component } from 'react';
-import { createPortal } from 'react-dom/cjs/react-dom.development';
+import { createPortal } from 'react-dom';
 import { ReactComponent as CloseButton } from '../../images/closeBtn.svg';
 import s from './Modal.module.css';
 const modalRoot = document.querySelector('#modal-root');
