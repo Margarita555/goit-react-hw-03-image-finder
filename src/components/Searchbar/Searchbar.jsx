@@ -28,7 +28,6 @@ export default class Searchbar extends Component {
                 <form className={s.form} onSubmit={this.handleSubmit}>
                     <button type="submit" className={s.button}>
                         <img className={s.icon} src={searchIcon} alt="img" />
-                        {/* <span className={s.buttonLabel}><img className={s.icon} src={searchIcon} alt="img" /></span> */}
                     </button>
                     <ToastContainer/>
                     <input className={s.input}   

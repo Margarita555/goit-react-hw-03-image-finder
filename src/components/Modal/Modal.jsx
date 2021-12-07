@@ -18,8 +18,8 @@ export default class Modal extends Component {
       this.props.toggleModal();
     }
   };
+
   handleBackdropClick = e => {
-    this.props.toggleModal();
     if (
       e.currentTarget === e.target ||
       e.target.nodeName === 'svg' ||
