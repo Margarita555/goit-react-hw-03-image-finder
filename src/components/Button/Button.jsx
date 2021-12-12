@@ -1,11 +1,9 @@
-import s from "./Button.module.css";
+import s from './Button.module.css';
 
-const Button = ({ onMoreBtnClick }) => {
-  return (
-    <button className={s.button} onClick={onMoreBtnClick}>
-      Load more
-    </button>
-  );
-};
+const Button = ({ onMoreBtnClick }) => (
+  <button className={s.button} onClick={onMoreBtnClick}>
+    Load more
+  </button>
+);
 
 export default Button;

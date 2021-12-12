@@ -20,7 +20,7 @@ export default class ImageGalleryItem extends Component {
           onClick={this.toggleModal}
           className={s.galleryItemImage}
           src={this.props.webformatURL}
-          alt="img"
+          alt={this.props.tags}
         />
         {this.state.showModal && (
           <Modal

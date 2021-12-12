@@ -20,11 +20,10 @@ export default class Modal extends Component {
   };
 
   handleBackdropClick = e => {
-    if (
-      e.currentTarget === e.target ||
-      e.target.nodeName === 'svg' ||
-      e.target.nodeName === 'path'
-    ) {
+    const clickedOnBackdrop = e.currentTarget === e.target;
+    const clickedOnSvg = e.target.nodeName === 'svg';
+    const clickedOnSvgPath = e.target.nodeName === 'path';
+    if (clickedOnBackdrop || clickedOnSvg || clickedOnSvgPath) {
       this.props.toggleModal();
     }
   };

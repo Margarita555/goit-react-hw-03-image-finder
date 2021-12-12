@@ -7,7 +7,6 @@ import Spinner from '../Spinner/Spinner';
 import s from './App.module.css';
 
 export default class App extends Component {
-  myRef = React.createRef();
   state = {
     searchQuery: '',
     images: [],
@@ -15,12 +14,12 @@ export default class App extends Component {
     loading: false,
     error: null,
   };
+  myRef = React.createRef();
 
   componentDidUpdate(prevProps, prevState) {
-    if (
-      prevState.searchQuery !== this.state.searchQuery ||
-      prevState.page !== this.state.page
-    ) {
+    const isQueryChanged = prevState.searchQuery !== this.state.searchQuery;
+    const isPageChanged = prevState.page !== this.state.page;
+    if (isQueryChanged || isPageChanged) {
       this.setState({ loading: true });
       fetch(
         `https://pixabay.com/api/?q=${this.state.searchQuery}&page=${this.state.page}&key=23351611-7864196d6829752dad19e3759&image_type=photo&orientation=horizontal&per_page=12`,
@@ -44,7 +43,7 @@ export default class App extends Component {
   handleFormSubmit = query => {
     this.setState({ searchQuery: query });
     this.setState({ images: [] });
-    this.myRef.current.scrollIntoView();
+    // this.myRef.current.scrollIntoView();
   };
 
   onMoreBtnClick = () => {
