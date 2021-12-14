@@ -28,16 +28,13 @@ export default class App extends Component {
           this.setState(prevState => ({
             images: [...prevState.images, ...resultImages.hits],
           }));
-          this.setState({
-            height: document.body.scrollHeight - 1808,
-          });
+          this.setScrollHeight();
         })
         .catch(error => this.setState({ error }))
         .finally(() => this.setState({ loading: false }));
     }
     if (this.state.page > 1 && prevState.height !== this.state.height) {
-      this.scrollToBottom();
-      // this.scrollDown();
+      this.scrollDown();
     }
   }
 
@@ -51,53 +48,41 @@ export default class App extends Component {
     this.setState(prevState => ({ page: prevState.page + 1 }));
   };
 
-  scrollToBottom() {
-    // const scrollHeight = this.myRef.scrollHeight;
-    // const height = this.myRef.clientHeight;
-    console.log(document.body.scrollHeight);
-    console.log(document.documentElement.scrollTop);
-    console.log(document.documentElement.clientHeight);
-    const allHeight = document.documentElement.scrollHeight;
-    console.log(this.state.height);
-    // const height = document.documentElement.scrollTop;
-    // const scrollLength = scrollHeight - height;
-    const maxScrollTop =
-      allHeight - Math.round(document.documentElement.clientHeight / 2);
-    console.log(maxScrollTop);
-    // this.myRef.current.scrollTop = maxScrollTop > 0 ? maxScrollTop : 0;
+  setScrollHeight() {
+    const searchbarHeight = this.myRef.current.offsetHeight;
+    const scrollHeight =
+      document.body.scrollHeight -
+      (document.body.scrollHeight -
+        (document.documentElement.clientHeight +
+          document.documentElement.scrollTop -
+          searchbarHeight));
+
+    this.setState({
+      height: scrollHeight,
+    });
+  }
+
+  scrollDown() {
+    // console.log(this.state.height);
     window.scrollTo({
       top: this.state.height,
       behavior: 'smooth',
     });
   }
 
-  // scrollDown() {
-  //   window.scrollTo({
-  //     top: document.documentElement.scrollHeight,
-  //     behavior: 'smooth',
-  //   });
-  // }
-
-  // scrollToBottom = () => {
-  //   const { messageList } = this.refs;
-  //   messageList.scrollIntoView({
-  //     behavior: 'smooth',
-  //     block: 'end',
-  //     inline: 'nearest',
-  //   });
-  // };
-
   render() {
     return (
       <div className={s.app}>
-        <Searchbar onSubmit={this.handleFormSubmit} />
+        <div ref={this.myRef}>
+          <Searchbar onSubmit={this.handleFormSubmit} />
+        </div>
         {this.state.loading && <Spinner />}
         {this.state.error && (
           <h1 className={s.errorMessage}>{this.state.error.message}</h1>
         )}
-        <div ref={this.myRef}>
-          <ImageGallery images={this.state.images} />
-        </div>
+
+        <ImageGallery images={this.state.images} />
+
         {this.state.images.length > 0 && (
           <Button onMoreBtnClick={this.onMoreBtnClick} />
         )}
